@@ -1,0 +1,62 @@
+ <section class="partners">
+        <div class="container reveal-section">
+          <p class="eyebrow reveal">ĐỐI TÁC &amp; THƯƠNG HIỆU ĐÃ ĐỒNG HÀNH</p>
+        </div>
+        <div class="marquee" id="marquee" aria-hidden="true">
+          <!-- duplicated once in JS for seamless loop -->
+          <span class="partner-logo"
+            ><img
+              src="assets/img/partners/byfas.webp"
+              alt="BYFAS"
+              loading="lazy"
+          /></span>
+          <span class="partner-logo"
+            ><img
+              src="assets/img/partners/bao-phu-nu.webp"
+              alt="Báo Phụ Nữ"
+              loading="lazy"
+          /></span>
+          <span class="partner-logo"
+            ><img
+              src="assets/img/partners/fpt-chung-khoan.webp"
+              alt="FPT Chứng Khoán"
+              loading="lazy"
+          /></span>
+          <span class="partner-logo"
+            ><img src="assets/img/partners/htv.webp" alt="HTV" loading="lazy"
+          /></span>
+          <span class="partner-logo"
+            ><img
+              src="assets/img/partners/kim-duc.webp"
+              alt="Kim Đức"
+              loading="lazy"
+          /></span>
+          <span class="partner-logo"
+            ><img
+              src="assets/img/partners/nhua-binh-minh.webp"
+              alt="Nhựa Bình Minh"
+              loading="lazy"
+          /></span>
+          <span class="partner-logo"
+            ><img
+              src="assets/img/partners/thanh-nien.webp"
+              alt="Thanh Niên"
+              loading="lazy"
+          /></span>
+          <span class="partner-logo"
+            ><img
+              src="assets/img/partners/victory-a.webp"
+              alt="Victory A"
+              loading="lazy"
+          /></span>
+          <span class="partner-logo"
+            ><img
+              src="assets/img/partners/vinamit.webp"
+              alt="Vinamit"
+              loading="lazy"
+          /></span>
+          <span class="partner-logo"
+            ><img src="assets/img/partners/vtv.webp" alt="VTV" loading="lazy"
+          /></span>
+        </div>
+      </section>
