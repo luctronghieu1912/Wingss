@@ -1265,3 +1265,16 @@ footer {
   width: 0%;
   background: var(--gold);
 }
+@media (max-width: 425px) {
+  .fbtn.zalo {
+    font-size: 10px;
+  }
+  .fbtn {
+    height: 30px;
+    width: 30px;
+  }
+  .fbtn svg {
+    width: 18px;
+    height: 18px;
+  }
+}
