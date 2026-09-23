@@ -319,7 +319,7 @@ h3 {
   height: 100%;
 }
 .wings-offcanvas .nav-link {
-  font-family: var(--serif);
+  font-family: var(--segoe);
   font-size: 1.9rem;
   padding: 12px 0 !important;
   border-bottom: 1px solid var(--line);
