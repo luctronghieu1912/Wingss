@@ -1,67 +1,52 @@
 (function () {
   "use strict";
 
+  // ---- ổn định vị trí cuộn khi load trang có #hash (vd: index.html#about) ----
+  // Trình duyệt tự cuộn tới #hash NGAY khi vừa parse xong HTML, lúc đó
+  // video/font/layout phía trên có thể chưa ổn định hẳn. Sau khi mọi thứ
+  // load xong (window.load), cuộn lại 1 lần nữa cho đúng vị trí, tránh
+  // hiện tượng lệch khác nhau mỗi lần F5.
+  window.addEventListener("load", function () {
+    if (location.hash) {
+      var target = document.querySelector(location.hash);
+      if (target) {
+        requestAnimationFrame(function () {
+          target.scrollIntoView({ block: "start" });
+        });
+      }
+    }
+  });
+
   // ---- header solid-on-scroll + scroll progress ----
   var head = document.getElementById("siteHead");
   var progressBar = document.getElementById("progressBar");
   var toTop = document.getElementById("toTop");
-  var bgVideo = document.querySelector(".site-bg-video");
-
-  // Scroll bắn ra nhiều lần hơn 1 frame (đặc biệt trên trackpad/mobile),
-  // nếu xử lý trực tiếp trong handler sẽ gây forced reflow lặp lại nhiều
-  // lần/frame -> giật khi cuộn. Gom lại, chỉ tính toán 1 lần mỗi frame
-  // bằng requestAnimationFrame, và bỏ qua nếu vị trí không đổi.
-  var lastY = -1;
-  var ticking = false;
-
-  function updateOnScroll() {
-    ticking = false;
+  var scrollTicking = false;
+  function onScroll() {
     var y = window.scrollY || document.documentElement.scrollTop;
-    if (y === lastY) return;
-    lastY = y;
-
     head.classList.toggle("solid", y > 60);
     toTop.classList.toggle("show", y > 500);
     var h = document.documentElement.scrollHeight - window.innerHeight;
     progressBar.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
+    scrollTicking = false;
   }
-  function onScroll() {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(updateOnScroll);
-    }
-  }
-  document.addEventListener("scroll", onScroll, { passive: true });
-  updateOnScroll();
+  document.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollTicking) {
+        requestAnimationFrame(onScroll);
+        scrollTicking = true;
+      }
+    },
+    { passive: true },
+  );
+  onScroll();
   toTop.addEventListener("click", function () {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
   // ---- mobile menu: handled natively by Bootstrap's Offcanvas component
   //      (data-bs-toggle/data-bs-dismiss attributes in index.html) ----
-
-  // Video nền giờ chỉ nằm trong .hero (không còn fixed toàn trang), nên
-  // dùng IntersectionObserver để biết chính xác lúc hero còn/hết hiện
-  // trên màn hình rồi mới play/pause — vừa đỡ tốn CPU/GPU giải mã liên
-  // tục lúc đã cuộn xa, vừa không cần đoán qua window.innerHeight.
-  if (bgVideo) {
-    var heroEl = document.querySelector(".hero");
-    if (heroEl && "IntersectionObserver" in window) {
-      var ioVideo = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (en) {
-            if (en.isIntersecting) {
-              bgVideo.play().catch(function () {});
-            } else {
-              bgVideo.pause();
-            }
-          });
-        },
-        { threshold: 0 },
-      );
-      ioVideo.observe(heroEl);
-    }
-  }
 
   // ---- reveal on scroll ----
   var revealItems = document.querySelectorAll(".reveal, .reveal-section");
@@ -84,6 +69,7 @@
         rootMargin: "0px 0px -30px 0px",
       },
     );
+
     revealItems.forEach(function (el) {
       io.observe(el);
     });
@@ -92,6 +78,7 @@
       el.classList.add("in");
     });
   }
+
   // ---- animated counters ----
   var counters = document.querySelectorAll(".counter");
   function animateCounter(el) {
@@ -108,36 +95,12 @@
     }
     requestAnimationFrame(step);
   }
-  // Ngay lúc vừa reload, video nền đang trong giai đoạn giải mã/buffer
-  // nặng nhất — nếu đếm số đúng lúc đó, main thread bị tranh chấp và số
-  // bị xé hình/giật như trong ảnh. "playing" là thời điểm video đã thật
-  // sự chạy được (qua giai đoạn nặng nhất), nên đợi đúng lúc đó rồi mới
-  // đếm; có timeout dự phòng để không bị treo nếu video lỗi/bị chặn.
-  var readyForCounters = false;
-  var pendingCounters = [];
-  function startCounter(el) {
-    if (readyForCounters) {
-      animateCounter(el);
-    } else {
-      pendingCounters.push(el);
-    }
-  }
-  function unlockCounters() {
-    if (readyForCounters) return;
-    readyForCounters = true;
-    pendingCounters.forEach(animateCounter);
-    pendingCounters = [];
-  }
-  if (bgVideo) {
-    bgVideo.addEventListener("playing", unlockCounters, { once: true });
-  }
-  setTimeout(unlockCounters, 1200);
   if ("IntersectionObserver" in window && counters.length) {
     var io2 = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (en) {
           if (en.isIntersecting) {
-            startCounter(en.target);
+            animateCounter(en.target);
             io2.unobserve(en.target);
           }
         });
@@ -149,16 +112,15 @@
     });
   }
 
-  // ---- marquee + horizontal scrollers: không cần chạy ngay lúc vừa
-  // reload (nằm dưới hero, ngoài màn hình đầu tiên) — hoãn lại đến lúc
-  // trình duyệt rảnh tay để nhường main thread cho hero render trước. ----
-  function whenIdle(fn) {
-    if ("requestIdleCallback" in window) {
-      requestIdleCallback(fn, { timeout: 1000 });
-    } else {
-      setTimeout(fn, 0);
-    }
+  // ---- marquee: duplicate content once for a seamless loop ----
+  var marquee = document.getElementById("marquee");
+  if (marquee) {
+    marquee.innerHTML += marquee.innerHTML;
   }
+
+  // ---- horizontal scrollers: continuous auto-scroll, pause on hover,
+  //      drag-to-scroll with mouse/touch (pointer events cover both) ----
+  var scrollerControls = {};
 
   function initDragScroller(scroller) {
     if (!scroller) return null;
@@ -169,11 +131,18 @@
     var moved = 0;
 
     scroller.addEventListener("pointerdown", function (e) {
+      // chỉ xử lý nút chuột chính / chạm chính (bỏ qua chuột phải, v.v.)
+      if (e.button !== undefined && e.button !== 0) return;
       dragging = true;
       moved = 0;
       startX = e.clientX;
       startScroll = scroller.scrollLeft;
       scroller.classList.add("dragging");
+      // Chặn hành vi mặc định (bôi đen chọn chữ khi rê chuột qua tên/mô
+      // tả, hoặc trình duyệt cố scroll dọc native) ngay từ đầu, thay vì
+      // chỉ dựa vào user-select:none của class .dragging (áp muộn hơn
+      // 1 nhịp) — đây là nguyên nhân chính khiến giữ chuột kéo bị "kẹt".
+      e.preventDefault();
       if (scroller.setPointerCapture) {
         try {
           scroller.setPointerCapture(e.pointerId);
@@ -183,6 +152,7 @@
 
     scroller.addEventListener("pointermove", function (e) {
       if (!dragging) return;
+      e.preventDefault();
       var dx = e.clientX - startX;
       moved = Math.abs(dx);
       // clamp trong đúng phạm vi scroll thật (0 -> scrollWidth - clientWidth),
@@ -207,23 +177,49 @@
     return scroller;
   }
 
-  whenIdle(function () {
-    // ---- marquee: duplicate content once for a seamless loop ----
-    var marquee = document.getElementById("marquee");
-    if (marquee) {
-      marquee.innerHTML += marquee.innerHTML;
-    }
+  // ---- team carousel: Embla Carousel drives a smooth, GPU-animated
+  //      slide (drag/swipe + the prev/next buttons), instead of the
+  //      raw scrollLeft dragging above. Falls back to the manual
+  //      drag-scroller if the Embla script didn't load (e.g. CDN
+  //      blocked / offline). ----
+  var teamViewport = document.getElementById("team-scroll");
+  var teamEmbla = null;
 
-    // ---- horizontal scrollers: continuous auto-scroll, pause on hover,
-    //      drag-to-scroll with mouse/touch (pointer events cover both) ----
-    initDragScroller(document.getElementById("team-scroll"));
+  if (teamViewport && window.EmblaCarousel) {
+    teamEmbla = window.EmblaCarousel(teamViewport, {
+      align: "start",
+      containScroll: "trimSnaps",
+    });
 
-    document.querySelectorAll("[data-scroll]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var target = document.getElementById(btn.dataset.scroll);
-        var dir = parseInt(btn.dataset.dir, 10);
-        if (target) target.scrollBy({ left: dir * 300, behavior: "smooth" });
+    teamEmbla.on("pointerDown", function () {
+      teamViewport.classList.add("dragging");
+    });
+    teamEmbla.on("pointerUp", function () {
+      teamViewport.classList.remove("dragging");
+    });
+
+    // touch fallback: Embla suppresses the click that follows a real
+    // swipe, so a plain tap (no drag) safely toggles that card's
+    // profile open — mouse users already get this via CSS :hover.
+    teamViewport.querySelectorAll(".team-card").forEach(function (card) {
+      card.addEventListener("click", function () {
+        card.classList.toggle("show");
       });
+    });
+  } else if (teamViewport) {
+    initDragScroller(teamViewport);
+  }
+
+  document.querySelectorAll("[data-scroll]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var target = document.getElementById(btn.dataset.scroll);
+      var dir = parseInt(btn.dataset.dir, 10);
+      if (target === teamViewport && teamEmbla) {
+        if (dir < 0) teamEmbla.scrollPrev();
+        else teamEmbla.scrollNext();
+        return;
+      }
+      if (target) target.scrollBy({ left: dir * 300, behavior: "smooth" });
     });
   });
 

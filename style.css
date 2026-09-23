@@ -911,30 +911,35 @@ h3 {
 }
 
 /* ============ TEAM / PRESS scrollers ============ */
-.team,
-.press {
-  padding: 100px 0;
-}
-.scroller {
+.team {
   display: flex;
   overflow-x: auto;
   padding-bottom: 8px;
   scrollbar-width: none;
+}
+
+/* Embla carousel: .embla is the viewport (overflow hidden), Embla
+   translates .embla__container to slide smoothly between cards instead
+   of relying on native scrollLeft, so drag/swipe and the prev/next
+   buttons all animate with the same easing. */
+.embla {
+  overflow: hidden;
+  padding-bottom: 8px;
   cursor: grab;
-  touch-action: pan-y;
 }
-.scroller::-webkit-scrollbar {
-  display: none;
-}
-.scroller.dragging {
+.embla.dragging {
   cursor: grabbing;
-  user-select: none;
 }
-.scroller.dragging * {
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+}
+.embla.dragging .team-card {
   pointer-events: none;
 }
 .team-card {
   flex: 0 0 260px;
+  min-width: 0;
   position: relative;
 }
 
