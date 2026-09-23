@@ -5,21 +5,63 @@
   var head = document.getElementById("siteHead");
   var progressBar = document.getElementById("progressBar");
   var toTop = document.getElementById("toTop");
-  function onScroll() {
+  var bgVideo = document.querySelector(".site-bg-video");
+
+  // Scroll bắn ra nhiều lần hơn 1 frame (đặc biệt trên trackpad/mobile),
+  // nếu xử lý trực tiếp trong handler sẽ gây forced reflow lặp lại nhiều
+  // lần/frame -> giật khi cuộn. Gom lại, chỉ tính toán 1 lần mỗi frame
+  // bằng requestAnimationFrame, và bỏ qua nếu vị trí không đổi.
+  var lastY = -1;
+  var ticking = false;
+
+  function updateOnScroll() {
+    ticking = false;
     var y = window.scrollY || document.documentElement.scrollTop;
+    if (y === lastY) return;
+    lastY = y;
+
     head.classList.toggle("solid", y > 60);
     toTop.classList.toggle("show", y > 500);
     var h = document.documentElement.scrollHeight - window.innerHeight;
     progressBar.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
   }
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateOnScroll);
+    }
+  }
   document.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  updateOnScroll();
   toTop.addEventListener("click", function () {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
   // ---- mobile menu: handled natively by Bootstrap's Offcanvas component
   //      (data-bs-toggle/data-bs-dismiss attributes in index.html) ----
+
+  // Video nền giờ chỉ nằm trong .hero (không còn fixed toàn trang), nên
+  // dùng IntersectionObserver để biết chính xác lúc hero còn/hết hiện
+  // trên màn hình rồi mới play/pause — vừa đỡ tốn CPU/GPU giải mã liên
+  // tục lúc đã cuộn xa, vừa không cần đoán qua window.innerHeight.
+  if (bgVideo) {
+    var heroEl = document.querySelector(".hero");
+    if (heroEl && "IntersectionObserver" in window) {
+      var ioVideo = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) {
+              bgVideo.play().catch(function () {});
+            } else {
+              bgVideo.pause();
+            }
+          });
+        },
+        { threshold: 0 },
+      );
+      ioVideo.observe(heroEl);
+    }
+  }
 
   // ---- reveal on scroll ----
   var revealItems = document.querySelectorAll(".reveal, .reveal-section");
@@ -66,12 +108,36 @@
     }
     requestAnimationFrame(step);
   }
+  // Ngay lúc vừa reload, video nền đang trong giai đoạn giải mã/buffer
+  // nặng nhất — nếu đếm số đúng lúc đó, main thread bị tranh chấp và số
+  // bị xé hình/giật như trong ảnh. "playing" là thời điểm video đã thật
+  // sự chạy được (qua giai đoạn nặng nhất), nên đợi đúng lúc đó rồi mới
+  // đếm; có timeout dự phòng để không bị treo nếu video lỗi/bị chặn.
+  var readyForCounters = false;
+  var pendingCounters = [];
+  function startCounter(el) {
+    if (readyForCounters) {
+      animateCounter(el);
+    } else {
+      pendingCounters.push(el);
+    }
+  }
+  function unlockCounters() {
+    if (readyForCounters) return;
+    readyForCounters = true;
+    pendingCounters.forEach(animateCounter);
+    pendingCounters = [];
+  }
+  if (bgVideo) {
+    bgVideo.addEventListener("playing", unlockCounters, { once: true });
+  }
+  setTimeout(unlockCounters, 1200);
   if ("IntersectionObserver" in window && counters.length) {
     var io2 = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (en) {
           if (en.isIntersecting) {
-            animateCounter(en.target);
+            startCounter(en.target);
             io2.unobserve(en.target);
           }
         });
@@ -83,15 +149,16 @@
     });
   }
 
-  // ---- marquee: duplicate content once for a seamless loop ----
-  var marquee = document.getElementById("marquee");
-  if (marquee) {
-    marquee.innerHTML += marquee.innerHTML;
+  // ---- marquee + horizontal scrollers: không cần chạy ngay lúc vừa
+  // reload (nằm dưới hero, ngoài màn hình đầu tiên) — hoãn lại đến lúc
+  // trình duyệt rảnh tay để nhường main thread cho hero render trước. ----
+  function whenIdle(fn) {
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(fn, { timeout: 1000 });
+    } else {
+      setTimeout(fn, 0);
+    }
   }
-
-  // ---- horizontal scrollers: continuous auto-scroll, pause on hover,
-  //      drag-to-scroll with mouse/touch (pointer events cover both) ----
-  var scrollerControls = {};
 
   function initDragScroller(scroller) {
     if (!scroller) return null;
@@ -140,13 +207,23 @@
     return scroller;
   }
 
-  initDragScroller(document.getElementById("team-scroll"));
+  whenIdle(function () {
+    // ---- marquee: duplicate content once for a seamless loop ----
+    var marquee = document.getElementById("marquee");
+    if (marquee) {
+      marquee.innerHTML += marquee.innerHTML;
+    }
 
-  document.querySelectorAll("[data-scroll]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var target = document.getElementById(btn.dataset.scroll);
-      var dir = parseInt(btn.dataset.dir, 10);
-      if (target) target.scrollBy({ left: dir * 300, behavior: "smooth" });
+    // ---- horizontal scrollers: continuous auto-scroll, pause on hover,
+    //      drag-to-scroll with mouse/touch (pointer events cover both) ----
+    initDragScroller(document.getElementById("team-scroll"));
+
+    document.querySelectorAll("[data-scroll]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var target = document.getElementById(btn.dataset.scroll);
+        var dir = parseInt(btn.dataset.dir, 10);
+        if (target) target.scrollBy({ left: dir * 300, behavior: "smooth" });
+      });
     });
   });
 
