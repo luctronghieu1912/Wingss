@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dự án — Wings Storytelling Hub</title>
+    <meta
+      name="description"
+      content="Toàn bộ dự án của Wings Storytelling Hub — sự kiện văn hoá, phim tài liệu, podcast và các chiến dịch CSR."
+    />
+    <link rel="icon" type="image/png" href="assets/img/logo-wings-white.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&display=optional"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Theme + hiệu ứng riêng của Wings (nạp sau Bootstrap để override) -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- CSS riêng của trang portfolio (page-header + filter-tabs) -->
+    <link rel="stylesheet" href="portfolio.css" />
+  </head>
+  <body>
+    <div class="progress-track">
+      <div class="progress-bar-brand" id="progressBar"></div>
+    </div>
+
+    <!-- HEADER (Bootstrap navbar) -->
+    <header>
+      <nav
+        class="navbar navbar-expand-lg navbar-dark fixed-top site-head"
+        id="siteHead"
+      >
+        <div class="container site-head-inner">
+          <a href="index.html" class="brand navbar-brand m-0 site-head-logo">
+            <img
+              src="assets/img/logos/logo-wings-white.png"
+              alt="Wings Storytelling Hub"
+              class="brand-logo"
+            />
+          </a>
+
+          <div class="d-none d-lg-flex site-head-nav">
+            <ul class="navbar-nav main-nav flex-row m-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#about">Giới thiệu</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#services">Dịch vụ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#portfolio">Dự án</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#team">Core Team</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#blog">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://sachdoicanh.com/chan-dung-khanh-ly-hat-cung-nguon-coi"
+                  target="_blank"
+                  rel="noopener"
+                  >Sách Đôi Cánh</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="site-head-right">
+            <a href="#contact" class="btn-line d-none d-lg-inline-flex"
+              >Liên hệ</a
+            >
+
+            <button
+              class="navbar-toggler d-lg-none"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#mobileMenu"
+              aria-controls="mobileMenu"
+              aria-label="Mở menu"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- MOBILE MENU (Bootstrap Offcanvas) -->
+    <div
+      class="offcanvas offcanvas-top wings-offcanvas"
+      tabindex="-1"
+      id="mobileMenu"
+    >
+      <div class="offcanvas-header">
+        <button
+          type="button"
+          class="btn-close ms-auto"
+          data-bs-dismiss="offcanvas"
+          aria-label="Đóng menu"
+        ></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#about" data-bs-dismiss="offcanvas"
+              >Giới thiệu</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#services" data-bs-dismiss="offcanvas"
+              >Dịch vụ</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#portfolio" data-bs-dismiss="offcanvas"
+              >Dự án</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#team" data-bs-dismiss="offcanvas"
+              >Core Team</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#blog" data-bs-dismiss="offcanvas"
+              >Blog</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="https://sachdoicanh.com/chan-dung-khanh-ly-hat-cung-nguon-coi"
+              target="_blank"
+              rel="noopener"
+              >Sách Đôi Cánh</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact" data-bs-dismiss="offcanvas"
+              >Liên hệ</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <main id="top">
+      <!-- PAGE HEADER -->
+      <section class="page-header">
+        <div class="container reveal-section">
+          <nav class="breadcrumb-line reveal" aria-label="breadcrumb">
+            <a href="index.html">Trang chủ</a>
+            <span class="sep" aria-hidden="true">/</span>
+            <span class="current">Dự án</span>
+          </nav>
+          <p class="eyebrow reveal">TẤT CẢ DỰ ÁN</p>
+          <h1 class="reveal">Những câu chuyện<br />chúng tôi cùng kể</h1>
+          <p class="lede reveal">
+            Từ sự kiện văn hoá, phim tài liệu, podcast đến các chiến dịch CSR —
+            mỗi dự án là một cách Wings biến chiến lược thương hiệu thành câu
+            chuyện có thật, chạm được tới cộng đồng.
+          </p>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO GRID + FILTER -->
+      <section class="portfolio-full">
+        <div class="container reveal-section">
+          <div
+            class="filter-tabs reveal"
+            role="tablist"
+            aria-label="Lọc dự án theo lĩnh vực"
+          >
+            <button type="button" class="filter-btn active" data-filter="all">
+              Tất cả
+            </button>
+            <button
+              type="button"
+              class="filter-btn"
+              data-filter="Cultural Events"
+            >
+              Cultural Events
+            </button>
+            <button
+              type="button"
+              class="filter-btn"
+              data-filter="Documentary Series"
+            >
+              Documentary Series
+            </button>
+            <button type="button" class="filter-btn" data-filter="Podcast">
+              Podcast
+            </button>
+            <button type="button" class="filter-btn" data-filter="CSR">
+              CSR
+            </button>
+          </div>
+
+          <div
+            class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3"
+            id="projectGrid"
+          >
+            <div class="col" data-cat="Cultural Events">
+              <a
+                href="https://sachdoicanh.com/chan-dung-khanh-ly-hat-cung-nguon-coi"
+                target="_blank"
+                rel="noopener"
+                class="proj-card reveal"
+                style="--c1: #241a10; --c2: #8a6a35"
+              >
+                <span
+                  class="art"
+                  style="
+                    background-image: url(assets/img/project/hatcungnguoncoi.webp);
+                    background-color: var(--c1);
+                  "
+                ></span>
+                <span class="card-num">01</span>
+                <span class="card-arrow" aria-hidden="true">&rarr;</span>
+                <div>
+                  <span class="card-cat">Cultural Events</span>
+                  <h3 class="card-title">
+                    Hát cùng nguồn cội<br />Chân dung Khánh Ly
+                  </h3>
+                </div>
+              </a>
+            </div>
+
+            <div class="col" data-cat="Documentary Series">
+              <a
+                href="#"
+                class="proj-card reveal"
+                style="--c1: #0e1c2e; --c2: #2d4f74"
+              >
+                <span
+                  class="art"
+                  style="
+                    background-image: url(assets/img/project/amazingvietnam.png);
+                    background-color: var(--c1);
+                  "
+                ></span>
+                <span class="card-num">02</span>
+                <span class="card-arrow" aria-hidden="true">&rarr;</span>
+                <div>
+                  <span class="card-cat">Documentary Series</span>
+                  <h3 class="card-title">Amazing Vietnam</h3>
+                </div>
+              </a>
+            </div>
+
+            <div class="col" data-cat="Podcast">
+              <a
+                href="#"
+                class="proj-card reveal"
+                style="--c1: #221019; --c2: #6e3452"
+              >
+                <span
+                  class="art"
+                  style="
+                    background-image: url(assets/img/project/beautyinside.jpg);
+                    background-color: var(--c1);
+                  "
+                ></span>
+                <span class="card-num">03</span>
+                <span class="card-arrow" aria-hidden="true">&rarr;</span>
+                <div>
+                  <span class="card-cat">Podcast</span>
+                  <h3 class="card-title">Beauty Inside</h3>
+                </div>
+              </a>
+            </div>
+
+            <div class="col" data-cat="Cultural Events">
+              <a
+                href="#"
+                class="proj-card reveal"
+                style="--c1: #0d1f18; --c2: #33604a"
+              >
+                <span
+                  class="art"
+                  style="
+                    background-image: url(assets/img/project/tutinhquehuong.webp);
+                    background-color: var(--c1);
+                  "
+                ></span>
+                <span class="card-num">04</span>
+                <span class="card-arrow" aria-hidden="true">&rarr;</span>
+                <div>
+                  <span class="card-cat">Cultural Events</span>
+                  <h3 class="card-title">Tự tình quê hương</h3>
+                </div>
+              </a>
+            </div>
+
+            <div class="col" data-cat="Documentary Series">
+              <a
+                href="#"
+                class="proj-card reveal"
+                style="--c1: #241a05; --c2: #8c6a22"
+              >
+                <span
+                  class="art"
+                  style="
+                    background-image: url(assets/img/project/docduongamthuc.jpg);
+                    background-color: var(--c1);
+                  "
+                ></span>
+                <span class="card-num">05</span>
+                <span class="card-arrow" aria-hidden="true">&rarr;</span>
+                <div>
+                  <span class="card-cat">Documentary Series</span>
+                  <h3 class="card-title">Dọc đường ẩm thực</h3>
+                </div>
+              </a>
+            </div>
+
+            <div class="col" data-cat="CSR">
+              <a
+                href="#"
+                class="proj-card reveal"
+                style="--c1: #141a2e; --c2: #3d4c7c"
+              >
+                <span
+                  class="art"
+                  style="
+                    background-image: url(assets/img/project/vinamit.webp);
+                    background-color: var(--c1);
+                  "
+                ></span>
+                <span class="card-num">06</span>
+                <span class="card-arrow" aria-hidden="true">&rarr;</span>
+                <div>
+                  <span class="card-cat">CSR</span>
+                  <h3 class="card-title">Vinamit</h3>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <p class="grid-empty">Chưa có dự án nào trong nhóm này.</p>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta">
+        <div class="container reveal-section">
+          <div class="row justify-content-between align-items-end gy-4">
+            <div class="col-lg-5">
+              <h2>Bắt đầu một dự án ngay bây giờ</h2>
+            </div>
+            <div class="col-lg-6">
+              <p>
+                Chúng tôi đồng hành cùng doanh nghiệp, tổ chức và nhà sáng tạo
+                trong việc xây dựng thương hiệu, phát triển nội dung và tạo nên
+                những trải nghiệm có ý nghĩa.
+              </p>
+              <a href="#contact" class="btn-gold">Trò chuyện cùng chúng tôi</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <section class="footer-background">
+      <footer id="contact">
+        <div class="container reveal-section">
+          <div class="row foot-grid gy-5">
+            <div class="col-lg-5">
+              <a href="#top" class="foot-logo">Wings Storytelling Hub</a>
+              <p class="foot-desc">
+                Phát triển từ Truyền thông Đôi Cánh, xây dựng hệ sinh thái nội
+                dung, trải nghiệm và cộng đồng để tạo ảnh hưởng bền vững.
+              </p>
+              <div class="foot-social d-flex gap-3 mb-4">
+                <a
+                  href="https://www.facebook.com/truyenthongdoicanh"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Facebook"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12"
+                    />
+                  </svg>
+                </a>
+                <!-- <a href="#" aria-label="Instagram">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="1" />
+                  </svg>
+                </a> -->
+              </div>
+              <div class="foot-menu">
+                <h5>Menu</h5>
+                <ul class="foot-menu-padding">
+                  <li><a href="#about">Về chúng tôi</a></li>
+                  <li><a href="#blog">Blogs</a></li>
+                  <li><a href="#portfolio">Projects</a></li>
+                  <li><a href="#services">Services</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-7">
+              <script>
+                var submitted = false;
+              </script>
+              <iframe
+                name="hidden_iframe"
+                id="hidden_iframe"
+                style="display: none"
+                onload="
+                  if (submitted) {
+                    document
+                      .getElementById('formMessage')
+                      .classList.add('show');
+                    document.getElementById('contactForm').reset();
+                    submitted = false;
+                  }
+                "
+              ></iframe>
+              <form
+                id="contactForm"
+                class="contact-form"
+                action="https://script.google.com/macros/s/AKfycbwSk2Bawj9dhiS3A2o4nMcTpMW35uvKhnp93ufOqcvPpvrMQLjRuuFjwDS571vqFg_g/exec"
+                method="post"
+                target="hidden_iframe"
+                onsubmit="submitted = true"
+              >
+                <div class="row g-3 mb-3">
+                  <div class="col-sm-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="Name"
+                      placeholder="Họ tên"
+                      required
+                    />
+                  </div>
+                  <div class="col-sm-6">
+                    <input
+                      type="email"
+                      class="form-control"
+                      name="Email"
+                      placeholder="Email"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row g-3 mb-3">
+                  <div class="col-sm-6">
+                    <input
+                      type="tel"
+                      class="form-control"
+                      name="Phone"
+                      placeholder="Điện thoại"
+                    />
+                  </div>
+                  <div class="col-sm-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="Company"
+                      placeholder="Công ty"
+                    />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <textarea
+                    class="form-control"
+                    name="Message"
+                    rows="4"
+                    placeholder="Lời nhắn của bạn"
+                    required
+                  ></textarea>
+                </div>
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn-send">Gửi lời nhắn</button>
+                </div>
+              </form>
+              <p class="form-msg" id="formMessage">
+                Cảm ơn bạn! Lời nhắn đã được gửi thành công.
+              </p>
+            </div>
+          </div>
+
+          <div class="row foot-contacts row-cols-1 row-cols-md-3 g-3">
+            <div class="col">Điện thoại: 0984 109 109</div>
+            <div class="col">Email: info@wingsmedia.vn</div>
+            <div class="col">270F Võ Thị Sáu, P. Xuân Hoà, Tp.HCM</div>
+          </div>
+        </div>
+        <div class="foot-bottom">
+          &copy; 2026 Wings Innovation Hub. All rights reserved.
+        </div>
+      </footer>
+    </section>
+
+    <!-- FLOATING CONTACT -->
+    <div
+      class="floaters position-fixed d-flex flex-column gap-2 align-items-end"
+    >
+      <button class="fbtn top" id="toTop" aria-label="Lên đầu trang">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <line x1="12" y1="19" x2="12" y2="5" />
+          <polyline points="5 12 12 5 19 12" />
+        </svg>
+      </button>
+      <a
+        href="https://zalo.me/0984109109"
+        target="_blank"
+        rel="noopener"
+        class="fbtn zalo"
+        aria-label="Zalo"
+        >Zalo</a
+      >
+      <a
+        href="https://www.facebook.com/truyenthongdoicanh"
+        class="fbtn mess"
+        aria-label="Messenger"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 2C6.48 2 2 6.13 2 11.22c0 2.91 1.49 5.48 3.82 7.15v3.63L9.3 20c.87.24 1.79.37 2.7.37 5.52 0 10-4.13 10-9.22S17.52 2 12 2zm1.18 12.28l-3.08-3.31-6.02 3.31 6.64-7.05 3.12 3.31 5.98-3.31-6.64 7.05z"
+          />
+        </svg>
+      </a>
+      <a href="tel:0984109109" class="fbtn phone" aria-label="Gọi điện">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+          />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Bootstrap 5 JS bundle (Popper + navbar/offcanvas/accordion) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+    <!-- JS riêng của trang portfolio (lọc dự án theo lĩnh vực) -->
+    <script src="portfolio.js"></script>
+  </body>
+</html>

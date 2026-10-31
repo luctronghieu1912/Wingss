@@ -1,0 +1,95 @@
+/* ============ portfolio.css ============
+   CSS RIÊNG cho portfolio.html — chỉ 2 phần trang này có mà index.html
+   không có: page-header (banner) và filter-tabs (lọc theo lĩnh vực).
+   Nạp SAU style.css trong <head> để có sẵn các biến màu/font
+   (--navy, --gold, --muted, --sans, --serif...) từ style.css. */
+
+/* ---- PAGE HEADER: banner đầu trang, không dùng video như .hero,
+   chỉ nền navy phẳng + breadcrumb, nhẹ và load nhanh hơn cho các
+   trang danh sách/nội dung con. ---- */
+.page-header {
+  padding: 190px 0 80px;
+  background: var(--navy);
+  border-bottom: 1px solid var(--line);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
+}
+.breadcrumb-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+.breadcrumb-line a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.breadcrumb-line a:hover {
+  color: var(--gold-light);
+}
+.breadcrumb-line .sep {
+  opacity: 0.5;
+}
+.breadcrumb-line .current {
+  color: var(--gold-light);
+}
+.page-header h1 {
+  font-size: clamp(2.3rem, 4.6vw, 3.4rem);
+  max-width: 15ch;
+  margin-bottom: 22px;
+}
+.page-header .lede {
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+/* ---- FILTER TABS + GRID WRAPPER ---- */
+.portfolio-full {
+  padding: 30px 0 110px;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 44px;
+}
+.filter-btn {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition:
+    border-color 0.3s,
+    color 0.3s,
+    background 0.3s;
+}
+.filter-btn:hover {
+  border-color: var(--gold);
+  color: #fff;
+}
+.filter-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+}
+.grid-empty {
+  color: var(--muted);
+  padding: 40px 0;
+  display: none;
+}
+.grid-empty.show {
+  display: block;
+}

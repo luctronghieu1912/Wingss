@@ -27,7 +27,7 @@
       rel="stylesheet"
     />
 
-    <!-- Theme + hiệu ứng riêng của Wings (nạp sau Bootstrap để override) -->
+    <!-- Theme + hiệu ứng riêng của Wings  -->
     <link rel="stylesheet" href="style.css" />
     <script
       async
@@ -47,22 +47,6 @@
     <div class="progress-track">
       <div class="progress-bar-brand" id="progressBar"></div>
     </div>
-
-    <!-- VIDEO BACKGROUND -->
-
-    <!-- HEADER (Bootstrap navbar) -->
-    <!--
-  Thay đổi so với bản gốc:
-  - Trước đây <nav> chỉ có 2 khối flex (brand | nav+contact gộp chung),
-    nên justify-content-between đẩy cả nav lẫn nút Liên hệ dồn về bên
-    phải — không có khối nào thực sự nằm giữa.
-  - Giờ tách thành 3 khối rõ ràng: .site-head-logo (trái) —
-    .site-head-nav (giữa, tự canh giữa trong khoảng trống còn lại) —
-    .site-head-right (phải, chứa nút Liên hệ + nút mở menu mobile).
-  - Bỏ class d-flex/justify-content-between của Bootstrap trên
-    .container vì nó dùng !important, xung đột với layout grid 3 cột
-    mới — thay bằng class riêng .site-head-inner (định nghĩa trong CSS).
--->
     <header>
       <nav
         class="navbar navbar-expand-lg navbar-dark fixed-top site-head"
@@ -203,7 +187,7 @@
               <p class="lede reveal">
                 Một câu chuyện được phát triển thành nhiều tài sản truyền thông
                 - minh chứng cho cách Wings xây dựng giá trị thương hiệu bằng
-                <b>storytelling đa nền tảng.</b>
+                <b>Storytelling đa nền tảng.</b>
               </p>
             </div>
             <div class="col-lg-5">
@@ -1388,7 +1372,7 @@
               </div>
               <div class="foot-menu">
                 <h5>Menu</h5>
-                <ul>
+                <ul class="foot-menu-padding">
                   <li><a href="#about">Về chúng tôi</a></li>
                   <li><a href="#blog">Blogs</a></li>
                   <li><a href="#portfolio">Projects</a></li>

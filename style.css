@@ -46,13 +46,7 @@ body {
     transition-duration: 0.001ms !important;
   }
 }
-/* Trang dài, nhiều section (marquee, ảnh nền, accordion...). content-visibility:
-   auto cho phép trình duyệt bỏ qua layout/paint của phần chưa cuộn tới, giúp
-   cuộn mượt hơn hẳn thay vì phải dựng toàn bộ trang ngay từ đầu. Chỉ áp dụng
-   từ section thứ 2 trở đi (không áp cho .hero vì cần hiển thị ngay lập tức).
-   contain-intrinsic-size là chiều cao ước lượng, tránh giật thanh cuộn khi
-   trình duyệt chưa đo được kích thước thật của section. Trình duyệt không hỗ
-   trợ (Firefox cũ) sẽ tự bỏ qua, không ảnh hưởng gì. */
+
 .legacy,
 .milestones,
 .partners,
@@ -115,14 +109,7 @@ h3 {
   transform: translateY(0);
 }
 
-/* ============ VIDEO BACKGROUND ============
-   Trước đây video + lớp phủ tối dùng position: fixed phủ toàn màn hình
-   -> vẫn "nằm" phía sau MỌI section trên trang, nên hễ section nào
-   không có nền đặc (transparent) là khung hình video (kể cả lúc đã
-   pause, đứng hình) sẽ hiện xuyên qua lúc cuộn xuống. Giờ đổi sang
-   position: absolute và giới hạn trong .hero (position: relative;
-   overflow: hidden) -> ra khỏi hero là video biến mất hẳn khỏi luồng
-   render, không thể hiện xuyên qua các section phía dưới nữa. */
+/* ============ VIDEO BACKGROUND ============ */
 .hero {
   position: relative;
   overflow: hidden;
@@ -164,8 +151,7 @@ h3 {
 
 /* ------------------------------------------------------------
    Layout 3 cột: logo (trái) — nav (giữa) — contact (phải).
-   Cột giữa là 1fr nên co giãn theo khoảng trống còn lại, nav
-   bên trong tự canh giữa bằng justify-content: center.
+   
    ------------------------------------------------------------ */
 .site-head-inner {
   display: grid;
@@ -175,8 +161,6 @@ h3 {
 }
 
 .site-head-logo {
-  /* brand vốn đã là flex-column (xem .brand bên dưới), chỉ cần
-     đảm bảo nó không bị grid kéo giãn chiều ngang */
   justify-self: start;
 }
 
@@ -303,9 +287,6 @@ h3 {
 }
 
 /* ------------------------------------------------------------
-   ≤991px (dưới lg): nav giữa ẩn (đổ vào offcanvas), lúc này grid
-   chỉ còn logo trái + khoảng trống giữa + nút mở menu phải — vẫn
-   đúng ý logo trái / phải là hành động chính (ở đây là nút menu).
    ------------------------------------------------------------ */
 @media (max-width: 991.98px) {
   .site-head-inner {
@@ -340,6 +321,7 @@ h3 {
   position: relative;
   z-index: 1;
 }
+
 .hero h1 {
   font-size: clamp(2.6rem, 7.6vw, 64px);
   font-weight: 300;
@@ -362,7 +344,7 @@ h3 {
   max-width: 46ch;
 }
 .hero .lede b {
-  color: #fff;
+  color: var(--gold-light);
   font-weight: 500;
 }
 .stat-cluster {
@@ -387,8 +369,6 @@ h3 {
   line-height: 1;
 }
 .stat .counter {
-  /* Số 0/00 chữ số có độ rộng cố định (thay vì "1" hẹp hơn "5") ->
-     tránh chữ số bị nhấp nháy/lệch vị trí trong lúc đếm chạy lên. */
   font-variant-numeric: tabular-nums;
   display: inline-block;
 }
@@ -563,9 +543,7 @@ h3 {
 }
 
 /* ------------------------------------------------------------
-   Dải nền trắng chứa logo, mờ dần ở 2 mép để hoà vào nền tối của
-   section (giống ảnh mẫu) — dùng mask-image nên không cần biết
-   trước màu nền đúng là gì, luôn "lộ" đúng màu section phía sau.
+
    ------------------------------------------------------------ */
 .marquee-window {
   position: relative;
@@ -588,10 +566,6 @@ h3 {
   );
 }
 
-/* .marquee-window là "cửa sổ" đứng yên; bên trong .marquee chứa 2
-   .marquee-track giống hệt nhau nối liền nhau rồi animate cùng lúc
-   -> khi track 1 trượt hết đúng bằng độ rộng của chính nó thì track
-   2 đã ở đúng vị trí ban đầu của track 1 -> loop liền mạch. */
 .marquee {
   display: flex;
   align-items: center;
@@ -624,7 +598,6 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  /* full màu như ảnh mẫu — không còn grayscale/opacity */
 }
 
 @keyframes scroll {
@@ -825,10 +798,7 @@ h3 {
   text-decoration: none;
 }
 
-/* Overlay tối để chữ luôn đọc được trên ảnh — CHỈ có gradient, không
-   set background-image ở đây (đó là việc của .art). Đây chính là chỗ
-   file CSS gốc bị dư 1 dòng background-image khiến ảnh chỉ hiện đúng
-   cho card đầu tiên; mình bỏ dòng đó. */
+/* Overlay tối để chữ luôn đọc được trên ảnh */
 .proj-card::after {
   content: "";
   position: absolute;
@@ -848,9 +818,6 @@ h3 {
   transform: scale(1.06);
 }
 
-/* .art = ảnh thật của từng dự án, set qua inline style background-image
-   ở HTML. background-color: var(--c1) (đặt cùng inline style) làm màu
-   dự phòng trong lúc ảnh chưa tải/ảnh lỗi đường dẫn. */
 .art {
   position: absolute;
   inset: 0;
@@ -918,10 +885,7 @@ h3 {
   scrollbar-width: none;
 }
 
-/* Embla carousel: .embla is the viewport (overflow hidden), Embla
-   translates .embla__container to slide smoothly between cards instead
-   of relying on native scrollLeft, so drag/swipe and the prev/next
-   buttons all animate with the same easing. */
+/* Embla carousel: .embla is the viewport (overflow hidden). */
 .embla {
   overflow: hidden;
   padding-bottom: 8px;
@@ -943,9 +907,7 @@ h3 {
   position: relative;
 }
 
-/* Ảnh thật của từng thành viên, set qua avatar-N (background-image).
-   Thêm background-size/position/repeat ở đây 1 lần cho cả 4 avatar,
-   không cần lặp lại trong mỗi class avatar-N. */
+/* */
 .team-photo {
   position: relative;
   aspect-ratio: 3/4;
@@ -956,10 +918,8 @@ h3 {
   background-repeat: no-repeat;
 }
 
-/* Mỗi avatar-N: background-image là ảnh thật; background-color giữ
-   lại 1 màu từ gradient cũ làm màu dự phòng khi ảnh chưa tải/lỗi. */
 .avatar-1 {
-  background-image: url("assets/img/profiles/Artboard1.webp");
+  background-image: url("assets/img/profiles/Yentrinh.jpg");
   background-color: #3a2c17;
 }
 .avatar-2 {
@@ -1029,9 +989,6 @@ h3 {
   padding: 100px 0;
 }
 
-/* Không còn nằm trong .scroller nên bỏ flex: 0 0 320px (cố định
-   chiều rộng cho kéo ngang) — trong grid, .col đã tự quyết định
-   chiều rộng, .press-card chỉ cần width: 100% (mặc định của block/a). */
 .press-card {
   display: block;
 }
@@ -1138,6 +1095,9 @@ footer {
   margin: 0 0 14px;
   font-weight: 500;
 }
+.foot-menu-padding {
+  padding-left: 1rem !important;
+}
 .foot-menu a {
   font-size: 0.92rem;
   color: rgba(255, 255, 255, 0.98);
@@ -1192,6 +1152,7 @@ footer {
   border-bottom: 1px solid var(--line);
   font-size: 0.88rem;
   color: rgba(255, 255, 255, 0.97);
+  text-align: center;
 }
 .foot-bottom {
   padding: 24px 0;

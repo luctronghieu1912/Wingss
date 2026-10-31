@@ -225,4 +225,35 @@
 
   // ---- services accordion: handled natively by Bootstrap's Accordion
   //      component (data-bs-toggle="collapse" + data-bs-parent) ----
+
+  /////////////////////////////////
+
+  //Trang Portfolio
+
+  /////////////////////////////////
+  // ---- portfolio filter: lọc lưới dự án theo lĩnh vực ----
+  var filterBar = document.querySelector(".filter-tabs");
+  if (!filterBar) return;
+
+  var filterBtns = filterBar.querySelectorAll(".filter-btn");
+  var gridCols = document.querySelectorAll("#projectGrid > [data-cat]");
+  var emptyMsg = document.querySelector(".grid-empty");
+
+  filterBar.addEventListener("click", function (e) {
+    var btn = e.target.closest(".filter-btn");
+    if (!btn) return;
+
+    filterBtns.forEach(function (b) {
+      b.classList.toggle("active", b === btn);
+    });
+
+    var f = btn.dataset.filter;
+    var visibleCount = 0;
+    gridCols.forEach(function (col) {
+      var show = f === "all" || col.dataset.cat === f;
+      col.style.display = show ? "" : "none";
+      if (show) visibleCount++;
+    });
+    if (emptyMsg) emptyMsg.classList.toggle("show", visibleCount === 0);
+  });
 })();
