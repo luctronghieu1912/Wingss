@@ -5,6 +5,8 @@
    để mọi component (navbar, accordion, form, button, badge...)
    tự động dùng đúng bảng màu thương hiệu. */
 :root {
+  --white: #fff;
+  --blue-klein: #002fa7;
   --navy: #01102b;
   --navy-2: #01102b;
   --navy-3: #01102b;
@@ -12,19 +14,19 @@
   --gold: #b6924f;
   --gold-light: #f0ddac;
   --ink: #1b1a17;
-  --line: rgba(255, 255, 255, 0.14);
-  --muted: rgba(255, 255, 255, 0.62);
+  --line: rgba(8, 8, 8, 0.14);
+  --muted: rgba(10, 10, 10, 0.62);
   --serif: "Playfair Display", serif;
   --segoe: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   --sans: "Inter", -apple-system, Segoe UI, sans-serif;
   --ease: cubic-bezier(0.22, 0.68, 0, 1);
 
   /* ---- Bootstrap theme overrides ---- */
-  --bs-body-bg: var(--navy);
-  --bs-body-color: #fff;
+  --bs-body-bg: var(--white);
+  --bs-body-color: var(--blue-klein);
   --bs-body-font-family: var(--sans);
   --bs-border-color: var(--line);
-  --bs-link-color: #fff;
+  --bs-link-color: #000000;
   --bs-link-hover-color: var(--gold-light);
   --bs-primary: var(--gold);
   --bs-primary-rgb: 182, 146, 79;
@@ -80,7 +82,7 @@ h3 {
 .eyebrow {
   font-size: 1rem;
   letter-spacing: 0.14em;
-  color: var(--gold-light);
+  color: var(--white);
   font-weight: 600;
   margin: 0 0 14px;
 }
@@ -143,7 +145,7 @@ h3 {
   border-bottom: 1px solid transparent;
 }
 .site-head.solid {
-  background: rgba(10, 17, 40, 0.94);
+  background: #002fa7;
   backdrop-filter: blur(10px);
   /* padding: 20px 0 0 0; */
   border-color: var(--line);
@@ -236,7 +238,7 @@ h3 {
   right: 0;
 }
 .btn-line {
-  background: var(--gold);
+  background: var(--);
   border: 1px solid var(--gold);
   color: var(--navy);
   font-weight: 600;
@@ -255,7 +257,7 @@ h3 {
   border-color: var(--gold-light);
   color: var(--navy);
 }
-.navbar-toggler {
+.of .navbar-toggler {
   border: 0;
   padding: 6px;
   box-shadow: none !important;
@@ -298,6 +300,7 @@ h3 {
   background: var(--navy);
   color: #fff;
   height: 100%;
+  align-items: center;
 }
 .wings-offcanvas .nav-link {
   font-family: var(--segoe);
@@ -326,6 +329,7 @@ h3 {
   font-size: clamp(2.6rem, 7.6vw, 64px);
   font-weight: 300;
   letter-spacing: -0.01em;
+  color: wheat;
 }
 .hero h1 i {
   font-style: italic;
@@ -336,6 +340,9 @@ h3 {
   height: 2px;
   background: var(--gold);
   margin: 26px 0;
+}
+.legacy .rule {
+  background: #002fa7;
 }
 .hero .lede {
   font-size: 1.05rem;
@@ -374,7 +381,7 @@ h3 {
 }
 .stat .lbl {
   font-size: 0.78rem;
-  color: var(--muted);
+  color: wheat;
   margin-top: 6px;
 }
 .stat .icon {
@@ -421,7 +428,7 @@ h3 {
   font-size: clamp(24rem, 9vw, 9.5rem);
   line-height: 0.85;
   text-align: center;
-  background: linear-gradient(180deg, #ffffff 0%, #bcd0ea 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #002fa7 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -448,7 +455,7 @@ h3 {
 }
 .legacy-text h2 i {
   font-style: italic;
-  color: var(--gold-light);
+  color: var(--blue-klein);
 }
 .legacy-text .rule {
   margin: 22px 0;
@@ -491,7 +498,7 @@ h3 {
   font-weight: 300;
 }
 .m-head p {
-  color: var(--muted);
+  color: #000;
   font-size: 0.95rem;
   line-height: 1.7;
   max-width: 51ch;
@@ -521,24 +528,22 @@ h3 {
 }
 .m-item .idx {
   font-size: 0.75rem;
-  color: var(--gold-light);
+  color: var(--blue-klein);
   letter-spacing: 0.05em;
 }
 .m-item p {
   font-size: 0.92rem;
   line-height: 1.5;
   margin: 12px 0 0;
-  color: rgba(255, 255, 255, 0.98);
+  color: rgba(10, 10, 10, 0.98);
 }
 
 /* ============ PARTNERS marquee (cream band) ============ */
 .partners {
-  background: var(--navy, #0a1128);
-
   overflow: hidden;
 }
 .partners .eyebrow {
-  color: #8a6a2f;
+  color: var(--blue-klein);
   margin-bottom: 10px;
 }
 
@@ -669,7 +674,7 @@ h3 {
   --bs-accordion-border-width: 0; /* tắt viền mặc định quanh mỗi item */
   --bs-accordion-btn-bg: transparent;
   --bs-accordion-active-bg: transparent;
-  --bs-accordion-active-color: #6fb3ef;
+  --bs-accordion-active-color: ;
   --bs-accordion-btn-focus-box-shadow: none;
   --bs-accordion-body-padding-x: 0;
   --bs-accordion-btn-padding-x: 0;
@@ -685,6 +690,7 @@ h3 {
   text-transform: uppercase;
   padding-top: 24px;
   padding-bottom: 24px;
+  color: #6fb3ef;
 }
 .svc-accordion .accordion-button::after {
   background-image: none;
@@ -699,21 +705,22 @@ h3 {
   content: "+";
   transform: rotate(45deg);
 }
+
 .svc-accordion .accordion-body {
   padding-bottom: 26px;
   max-width: 70ch;
 }
 .svc-accordion .accordion-body p {
-  color: var(--muted);
+  color: #000;
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0 0 18px;
 }
 .tag-row .badge {
-  border: 1px solid var(--line);
+  border: 1px solid var(--blue-klein);
   font-size: 0.8rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.97);
+  color: var(--muted);
   padding: 7px 14px;
 }
 @media (max-width: 768px) {
@@ -734,8 +741,8 @@ h3 {
   font-size: 0.76rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gold-light);
-  border: 1px solid var(--gold);
+  color: var(--blue-klein);
+  border: 1px solid var(--blue-klein);
   border-radius: 999px;
   padding: 12px 22px;
   white-space: nowrap;
@@ -749,23 +756,24 @@ h3 {
   margin-left: 8px;
 }
 .link-more:hover {
-  background: var(--gold);
-  color: var(--navy);
+  background: var(--blue-klein);
+  color: var(--white);
 }
 .scroll-btn {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  border: 1px solid var(--line);
+  border: 1px solid var(--blue-klein);
   background: none;
-  color: #fff;
+  color: #000;
   transition:
     border-color 0.3s,
     background 0.3s;
 }
 .scroll-btn:hover {
-  border-color: var(--gold);
-  background: rgba(182, 146, 79, 0.12);
+  border-color: var(--blue-klein);
+  background: var(--blue-klein);
+  color: #fff;
 }
 
 /* ============ PORTFOLIO / BLOG cards ============ */
@@ -812,7 +820,7 @@ h3 {
 }
 
 .proj-card:hover .card-title {
-  color: var(--gold-light);
+  color: #6fb3ef;
 }
 .proj-card:hover .art {
   transform: scale(1.06);
@@ -831,7 +839,7 @@ h3 {
 .card-cat {
   font-size: 0.72rem;
   letter-spacing: 0.1em;
-  color: var(--gold-light);
+  color: var(--white);
   display: block;
   margin-bottom: 8px;
   text-transform: uppercase;
@@ -871,8 +879,8 @@ h3 {
     transform 0.3s var(--ease);
 }
 .proj-card:hover .card-arrow {
-  background: var(--gold);
-  border-color: var(--gold);
+  background: #6fb3ef;
+  border-color: #6fb3ef;
   color: var(--navy);
   transform: rotate(45deg);
 }
@@ -965,7 +973,7 @@ h3 {
 }
 .team-role {
   font-size: 0.78rem;
-  color: var(--gold-light);
+  color: var(--white);
   display: block;
   margin-top: 3px;
 }
@@ -1006,7 +1014,7 @@ h3 {
   font-size: 0.9rem;
   line-height: 1.5;
   margin-top: 14px;
-  color: rgba(255, 255, 255, 0.99);
+  color: #000;
   text-decoration: none;
 }
 .press-card,
@@ -1016,12 +1024,12 @@ h3 {
   color: inherit;
 }
 .press-card:hover .press-cap {
-  color: var(--gold-light);
+  color: var(--blue-klein);
 }
 /* ============ CTA band ============ */
 .cta {
   padding: 120px 0;
-  background: linear-gradient(180deg, var(--navy-3), var(--navy));
+
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -1036,10 +1044,10 @@ h3 {
   line-height: 1.7;
   font-size: 1rem;
 }
-.btn-gold {
+.btn-blue {
   display: inline-block;
-  background: var(--gold);
-  color: var(--navy);
+  background: #6fb3ef;
+  color: var(--white);
   padding: 15px 32px;
   border-radius: 999px;
   font-size: 0.9rem;
@@ -1048,9 +1056,8 @@ h3 {
   transition: background 0.3s;
   text-decoration: none;
 }
-.btn-gold:hover {
-  background: var(--gold-light);
-  color: var(--navy);
+.btn-blue:hover {
+  background: var(--blue-klein);
 }
 
 /* ============ FOOTER ============ */
@@ -1064,7 +1071,7 @@ footer {
 .foot-logo {
   font-family: var(--serif);
   font-size: 1.5rem;
-  color: #fff;
+  color: #000;
   text-decoration: none;
 }
 .foot-desc {
@@ -1083,7 +1090,7 @@ footer {
   align-items: center;
   justify-content: center;
   transition: border-color 0.3s;
-  color: #fff;
+  /* color: #fff; */
 }
 .foot-social a:hover {
   border-color: var(--gold);
@@ -1100,34 +1107,34 @@ footer {
 }
 .foot-menu a {
   font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.98);
+  color: #000;
   text-decoration: none;
 }
 .foot-menu a:hover {
-  color: var(--gold-light);
+  color: var(--blue-klein);
 }
 
 /* contact form — theme các control mặc định của Bootstrap */
 .contact-form .form-control {
   background: transparent;
   border-color: var(--line);
-  color: #fff;
+  color: #000;
   padding: 13px 16px;
   border-radius: 6px;
   font-size: 0.92rem;
 }
 .contact-form .form-control::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(7, 6, 6, 0.4);
 }
 .contact-form .form-control:focus {
   background: transparent;
-  border-color: var(--gold);
-  color: #fff;
-  box-shadow: 0 0 0 0.15rem rgba(182, 146, 79, 0.25);
+  border-color: var(--blue-klein);
+  color: #000;
+  box-shadow: 0 0 0 0.15rem var(--blue-klein);
 }
 .btn-send {
-  background: var(--gold);
-  color: var(--navy);
+  background: #6fb3ef;
+  color: var(--white);
   border: 0;
   padding: 13px 28px;
   border-radius: 999px;
@@ -1135,12 +1142,12 @@ footer {
   font-size: 0.88rem;
 }
 .btn-send:hover {
-  background: var(--gold-light);
-  color: var(--navy);
+  background: var(--blue-klein);
+  color: var(--white);
 }
 .form-msg {
   display: none;
-  color: var(--gold-light);
+  color: var(--blue-klein);
   font-size: 0.88rem;
   margin-top: 4px;
 }
@@ -1151,7 +1158,7 @@ footer {
   padding: 34px 0;
   border-bottom: 1px solid var(--line);
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.97);
+  color: rgba(0, 0, 0, 0.97);
   text-align: center;
 }
 .foot-bottom {
@@ -1195,7 +1202,7 @@ footer {
   text-decoration: none;
 }
 .fbtn.top {
-  background: rgba(255, 255, 255, 0.12);
+  background: #555553;
   border: 1px solid var(--line);
   opacity: 0;
   pointer-events: none;
