@@ -27,6 +27,7 @@
   --newsreader: "Newsreader", serif;
   --ease: cubic-bezier(0.22, 0.68, 0, 1);
   --hover: #4db5e8;
+  --runalto: "Runalto", serif;
 
   /* ---- Bootstrap theme overrides ---- */
   --bs-body-bg: var(--white);
@@ -37,6 +38,14 @@
   --bs-link-hover-color: var(--gold-light);
   --bs-primary: var(--gold);
   --bs-primary-rgb: 182, 146, 79;
+}
+
+@font-face {
+  font-family: "Runalto";
+  src: url("assets/fonts/Runalto.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 html {
@@ -71,8 +80,8 @@ body {
 }
 
 ::selection {
-  background: var(--gold);
-  color: var(--navy);
+  background: var(--hover);
+  color: var(--white);
 }
 :focus-visible {
   outline: 2px solid var(--gold-light);
@@ -364,8 +373,8 @@ h3 {
   align-items: center;
 }
 .wings-offcanvas .nav-link {
-  font-family: var(--segoe);
-  font-size: 1.9rem;
+  font-family: var(--be);
+  font-size: 1.5rem;
   padding: 12px 0 !important;
   border-bottom: 1px solid var(--line);
   color: #fff !important;
@@ -390,17 +399,19 @@ h3 {
   align-items: center;
 }
 .hero h1 {
-  font-size: clamp(2.6rem, 7.6vw, 64px);
+  font-family: var(--runalto);
+  font-size: clamp(2rem, 7.6vw, 75px);
   font-weight: 400;
-  letter-spacing: -0.01em;
+  letter-spacing: 1px;
   color: var(--white);
   margin-bottom: 10px;
-  font-family: var(--noto);
 }
+
 .hero h1 i {
   font-style: italic;
   color: var(--gold-light);
 }
+
 .rule {
   width: 70px;
   height: 2px;
@@ -416,8 +427,7 @@ h3 {
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.97);
   max-width: 46ch;
-  white-space: nowrap;
-  display: contents;
+  margin-inline: auto;
   text-align: center;
 }
 .hero .lede b {
@@ -474,9 +484,10 @@ h3 {
     margin-left: 11px;
   }
 }
+
 @media (max-width: 425px) {
   .stat .num {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 }
 @media (max-width: 375px) {
@@ -495,10 +506,10 @@ h3 {
 .legacy-number {
   font-family: var(--serif);
   font-weight: 300;
-  font-size: clamp(24rem, 9vw, 9.5rem);
+  font-size: clamp(9rem, 20vw, 24rem);
   line-height: 0.85;
   text-align: center;
-  background: linear-gradient(180deg, #ffffff 1%, #4db5e8 100%);
+  background: linear-gradient(180deg, var(--hover) 1%, var(--blue-klein) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -546,16 +557,6 @@ h3 {
 @media (max-width: 768px) {
   .legacy-divider {
     display: block;
-  }
-}
-@media (max-width: 1024px) {
-  .legacy-number {
-    font-size: 13rem;
-  }
-}
-@media (max-width: 768px) {
-  .legacy-number {
-    font-size: 10rem;
   }
 }
 
@@ -705,11 +706,11 @@ h3 {
   font-family: var(--be);
 }
 .gword-title {
-  font-size: clamp(9.6rem, 6vw, 4rem);
+  font-size: clamp(3.5rem, 12vw, 9.6rem);
   font-weight: 400;
-  letter-spacing: -0.01em;
+  letter-spacing: -3px;
   text-align: center;
-  font-family: var(--newsreader);
+  font-family: var(--google);
 }
 .gword {
   display: block;
@@ -801,9 +802,6 @@ h3 {
   padding: 7px 14px;
 }
 @media (max-width: 768px) {
-  .gword-title {
-    font-size: clamp(5.6rem, 6vw, 4rem);
-  }
   .service-divider {
     display: none;
   }
@@ -1157,7 +1155,7 @@ footer {
   padding: 90px 0 0;
 }
 .foot-grid {
-  padding-bottom: 60px;
+  padding-bottom: 30px;
   border-bottom: 1px solid var(--line);
 }
 .foot-logo {
@@ -1186,6 +1184,12 @@ footer {
 }
 .foot-social a:hover {
   border-color: var(--hover);
+}
+.foot-zalo {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-decoration: none;
 }
 .foot-menu h5 {
   font-size: 0.78rem;
@@ -1246,7 +1250,7 @@ footer {
   display: block;
 }
 .foot-contacts {
-  padding: 34px 0;
+  padding: 15px 0;
   border-bottom: 1px solid var(--line);
   font-size: 0.88rem;
   color: rgba(0, 0, 0, 0.97);
