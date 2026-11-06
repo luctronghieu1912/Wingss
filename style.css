@@ -16,15 +16,20 @@
   --ink: #1b1a17;
   --line: rgba(8, 8, 8, 0.14);
   --muted: rgba(10, 10, 10, 0.62);
+  --text-title: #17191b;
+  --text-content: #45494d;
   --serif: "Playfair Display", serif;
   --segoe: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   --sans: "Inter", -apple-system, Segoe UI, sans-serif;
+  --be: "Be Vietnam Pro", sans-serif;
+  --google: "Google Sans Flex", sans-serif;
   --ease: cubic-bezier(0.22, 0.68, 0, 1);
+  --hover: #4db5e8;
 
   /* ---- Bootstrap theme overrides ---- */
   --bs-body-bg: var(--white);
-  --bs-body-color: var(--blue-klein);
-  --bs-body-font-family: var(--sans);
+  --bs-body-color: var(--text-title);
+  --bs-body-font-family: var(--google);
   --bs-border-color: var(--line);
   --bs-link-color: #000000;
   --bs-link-hover-color: var(--gold-light);
@@ -74,7 +79,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: var(--serif);
+  font-family: var(--be);
   font-weight: 400;
   margin: 0;
   line-height: 1.05;
@@ -145,7 +150,7 @@ h3 {
   border-bottom: 1px solid transparent;
 }
 .site-head.solid {
-  background: #002fa7;
+  background: var(--white);
   backdrop-filter: blur(10px);
   /* padding: 20px 0 0 0; */
   border-color: var(--line);
@@ -182,15 +187,34 @@ h3 {
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  color: #fff;
+  color: var(--white);
+  transition: color 0.4s var(--ease);
 }
-
+.brand-logo-wrap {
+  position: relative;
+  display: block;
+  margin-top: -15px; /* chuyển từ .brand-logo sang đây */
+}
 .brand-logo {
   height: 78px;
   width: auto;
   display: block;
-  transition: height 0.4s var(--ease);
-  margin-top: -15px;
+  margin-top: 0; /* bỏ -15px cũ để 2 logo khớp nhau */
+  transition: opacity 0.4s var(--ease);
+}
+/* logo xanh nằm chồng lên logo trắng, ẩn lúc đầu */
+.brand-logo-blue {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+/* khi cuộn xuống: hiện logo xanh, ẩn logo trắng */
+.site-head.solid .brand-logo-white {
+  opacity: 0;
+}
+.site-head.solid .brand-logo-blue {
+  opacity: 1;
 }
 .site-head.solid .brand-logo {
   height: 78px;
@@ -217,15 +241,18 @@ h3 {
   position: relative;
   padding: 4px 0 !important;
   margin: 0 14px;
-  color: rgba(255, 255, 255, 0.98) !important;
+  color: var(--white);
+  transition: color 0.4s var(--ease);
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 500;
   white-space: nowrap;
 }
+
 .main-nav .nav-link::after {
   content: "";
+  color: #2fa84f;
   position: absolute;
   left: 0;
   right: 100%;
@@ -238,9 +265,9 @@ h3 {
   right: 0;
 }
 .btn-line {
-  background: var(--);
-  border: 1px solid var(--gold);
-  color: var(--navy);
+  background: transparent;
+  border: 1px solid var(--white);
+  color: var(--white);
   font-weight: 600;
   padding: 10px 24px;
   border-radius: 999px;
@@ -250,7 +277,8 @@ h3 {
   white-space: nowrap;
   transition:
     background 0.3s,
-    color 0.3s;
+    color 0.4s var(--ease),
+    border-color 0.4s var(--ease);
 }
 .btn-line:hover {
   background: var(--gold-light);
@@ -275,7 +303,8 @@ h3 {
   left: 0;
   width: 22px;
   height: 1px;
-  background: #fff;
+  background: var(--white);
+  transition: background 0.4s var(--ease);
 }
 .navbar-toggler-icon::before {
   top: 6px;
@@ -284,8 +313,39 @@ h3 {
   bottom: 1px;
 }
 .navbar-toggler-icon {
-  border-top: 2px solid #fff;
+  border-top: 2px solid var(--white);
   border-bottom: none;
+  transition: border-color 0.4s var(--ease);
+}
+
+/* ------------------------------------------------------------
+   Khi cuộn xuống (.solid): nền trắng, chữ xanh
+   ------------------------------------------------------------ */
+.site-head.solid .brand {
+  color: var(--blue-klein);
+}
+.site-head.solid .main-nav .nav-link {
+  color: var(--text-title);
+}
+.site-head.solid .btn-line {
+  color: var(--text-title);
+  border-color: var(--blue-klein);
+}
+.site-head.solid .btn-line:hover {
+  background: var(--hover);
+  border-color: var(--blue-klein);
+  color: var(--white);
+}
+.site-head.solid .navbar-toggler-icon {
+  border-top-color: var(--blue-klein);
+}
+.site-head.solid .navbar-toggler-icon::before,
+.site-head.solid .navbar-toggler-icon::after {
+  background: var(--blue-klein);
+}
+/* gạch chân hover: vàng nhạt không thấy trên nền trắng → dùng xanh */
+.site-head.solid .main-nav .nav-link::after {
+  background: var(--blue-klein);
 }
 
 /* ------------------------------------------------------------
@@ -318,18 +378,22 @@ h3 {
   min-height: 100svh;
   display: flex;
   align-items: flex-end;
-  padding: 150px 0 90px;
+  padding: 150px 0 30px;
+  text-align: center;
 }
 .hero .container {
   position: relative;
   z-index: 1;
 }
-
+.content-center {
+  align-items: center;
+}
 .hero h1 {
   font-size: clamp(2.6rem, 7.6vw, 64px);
   font-weight: 300;
   letter-spacing: -0.01em;
-  color: wheat;
+  color: var(--white);
+  margin-bottom: 10px;
 }
 .hero h1 i {
   font-style: italic;
@@ -338,25 +402,27 @@ h3 {
 .rule {
   width: 70px;
   height: 2px;
-  background: var(--gold);
+  background: var(--hover);
   margin: 26px 0;
 }
 .legacy .rule {
-  background: #002fa7;
+  background: var(--text-content);
 }
 .hero .lede {
   font-size: 1.05rem;
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.97);
   max-width: 46ch;
+  white-space: nowrap;
+  display: contents;
+  text-align: center;
 }
 .hero .lede b {
-  color: var(--gold-light);
+  color: var(--hover);
   font-weight: 500;
 }
 .stat-cluster {
-  padding-top: 26px;
-  margin-top: 8px;
+  margin-top: 20px;
 }
 .stat {
   padding: 0 22px;
@@ -371,8 +437,8 @@ h3 {
 }
 .stat .num {
   font-family: var(--serif);
-  font-size: 2rem;
-  color: var(--gold-light);
+  font-size: 2.5rem;
+  color: var(--white);
   line-height: 1;
 }
 .stat .counter {
@@ -381,7 +447,7 @@ h3 {
 }
 .stat .lbl {
   font-size: 0.78rem;
-  color: wheat;
+  color: white;
   margin-top: 6px;
 }
 .stat .icon {
@@ -389,7 +455,7 @@ h3 {
   height: 26px;
   margin-bottom: 14px;
   margin-left: 25px;
-  stroke: var(--gold-light);
+  stroke: var(--white);
 }
 @media (max-width: 1024px) {
   .stat .num {
@@ -428,7 +494,7 @@ h3 {
   font-size: clamp(24rem, 9vw, 9.5rem);
   line-height: 0.85;
   text-align: center;
-  background: linear-gradient(180deg, #ffffff 0%, #002fa7 100%);
+  background: linear-gradient(180deg, #ffffff 1%, #4db5e8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -455,13 +521,13 @@ h3 {
 }
 .legacy-text h2 i {
   font-style: italic;
-  color: var(--blue-klein);
+  color: var(--text-title);
 }
 .legacy-text .rule {
   margin: 22px 0;
 }
 .legacy-text p {
-  color: var(--muted);
+  color: var(--text-title);
   font-size: 0.98rem;
   line-height: 1.7;
   max-width: 43ch;
@@ -498,7 +564,7 @@ h3 {
   font-weight: 300;
 }
 .m-head p {
-  color: #000;
+  color: var(--text-content);
   font-size: 0.95rem;
   line-height: 1.7;
   max-width: 51ch;
@@ -528,14 +594,14 @@ h3 {
 }
 .m-item .idx {
   font-size: 0.75rem;
-  color: var(--blue-klein);
+  color: var(--text-title);
   letter-spacing: 0.05em;
 }
 .m-item p {
   font-size: 0.92rem;
   line-height: 1.5;
   margin: 12px 0 0;
-  color: rgba(10, 10, 10, 0.98);
+  color: var(--text-content);
 }
 
 /* ============ PARTNERS marquee (cream band) ============ */
@@ -543,7 +609,7 @@ h3 {
   overflow: hidden;
 }
 .partners .eyebrow {
-  color: var(--blue-klein);
+  color: var(--text-title);
   margin-bottom: 10px;
 }
 
@@ -631,14 +697,14 @@ h3 {
 }
 
 .accordion-item h3 {
-  font-family: var(--segoe);
+  font-family: var(--be);
 }
 .gword-title {
   font-size: clamp(9.6rem, 6vw, 4rem);
-  font-weight: 700;
+  font-weight: 300;
   letter-spacing: -0.01em;
   text-align: center;
-  font-family: var(--segoe);
+  font-family: var(--be);
 }
 .gword {
   display: block;
@@ -674,7 +740,8 @@ h3 {
   --bs-accordion-border-width: 0; /* tắt viền mặc định quanh mỗi item */
   --bs-accordion-btn-bg: transparent;
   --bs-accordion-active-bg: transparent;
-  --bs-accordion-active-color: ;
+  --bs-accordion-btn-color: #000;
+  --bs-accordion-active-color: var(--blue-klein);
   --bs-accordion-btn-focus-box-shadow: none;
   --bs-accordion-body-padding-x: 0;
   --bs-accordion-btn-padding-x: 0;
@@ -690,7 +757,12 @@ h3 {
   text-transform: uppercase;
   padding-top: 24px;
   padding-bottom: 24px;
-  color: #6fb3ef;
+  color: #000; /* mặc định: chữ đen */
+  transition: color 0.3s var(--ease);
+}
+/* đang mở (đã bấm): chữ + dấu +/× chuyển xanh */
+.svc-accordion .accordion-button:not(.collapsed) {
+  color: var(--blue-klein);
 }
 .svc-accordion .accordion-button::after {
   background-image: none;
@@ -731,7 +803,6 @@ h3 {
     display: none;
   }
 }
-
 /* ============ SECTION HEAD (portfolio/team/press/blog) ============ */
 .sec-head h2 {
   font-size: clamp(2rem, 3.6vw, 2.7rem);
@@ -939,7 +1010,7 @@ h3 {
   background-color: #402038;
 }
 .avatar-4 {
-  background-image: url("assets/img/profiles/LCQC.png");
+  background-image: url("assets/img/profiles/minhduc.jpg");
   background-color: #123028;
 }
 

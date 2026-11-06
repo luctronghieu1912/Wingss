@@ -13,6 +13,7 @@
       type="image/png"
       href="assets/img/logos/logo-wings-blue.png"
     />
+    <!-- GOOGLE FONT -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,7 +21,16 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&display=optional"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@1..144,1..1000&display=swap"
+      rel="stylesheet"
+    />
 
+    <!-- FONT END -->
     <!-- Bootstrap 5 -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -54,11 +64,19 @@
       >
         <div class="container site-head-inner">
           <a href="index.html" class="brand navbar-brand m-0 site-head-logo">
-            <img
-              src="assets/img/logos/logo-wings-white.png"
-              alt="Wings Storytelling Hub"
-              class="brand-logo"
-            />
+            <span class="brand-logo-wrap">
+              <img
+                src="assets/img/logos/doi-canh-trang-trans.png"
+                class="brand-logo brand-logo-white"
+                alt="Tên công ty"
+              />
+              <img
+                src="assets/img/logos/doicanhtrans.png"
+                class="brand-logo brand-logo-blue"
+                alt=""
+                aria-hidden="true"
+              />
+            </span>
           </a>
 
           <div class="d-none d-lg-flex site-head-nav">
@@ -185,70 +203,36 @@
           <source src="assets/img/banners/backround.mp4" type="video/mp4" />
         </video>
         <div class="container reveal-section">
-          <div class="row gy-5 align-items-end">
-            <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-12 content-center">
               <p class="eyebrow reveal">DỰ ÁN TIÊU BIỂU</p>
-              <h1 class="reveal">
-                HÁT CÙNG <br />
-                NGUỒN CỘI
-              </h1>
-              <div class="rule reveal"></div>
+              <h1 class="reveal">HÁT CÙNG NGUỒN CỘI</h1>
               <p class="lede reveal">
-                Một câu chuyện được phát triển thành nhiều tài sản truyền thông
-                - minh chứng cho cách Wings xây dựng giá trị thương hiệu bằng
-                <b>Storytelling đa nền tảng.</b>
+                Một câu chuyện văn hóa - di sản được phát triển thành nhiều tài
+                sản truyền thông: <br />
+                Chương trình nghệ thuật - Âm nhạc, Phim tài liệu, Sách, Dự án
+                cộng đồng.
               </p>
-            </div>
-            <div class="col-lg-5">
-              <div class="row stat-cluster g-0">
-                <div class="col-4 stat">
-                  <svg
-                    class="icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke-width="1.6"
-                  >
-                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" />
-                    <circle cx="12" cy="12" r="3" />
-                  </svg>
-                  <div class="num">
-                    <span class="counter" data-target="50">0</span>M+
+              <div class="col-lg-5 mx-auto">
+                <div class="row stat-cluster g-0">
+                  <div class="col-4 stat">
+                    <div class="num">
+                      <span class="counter" data-target="50">0</span>M+
+                    </div>
+                    <div class="lbl">Lượt tiếp cận</div>
                   </div>
-                  <div class="lbl">Lượt tiếp cận</div>
-                </div>
-                <div class="col-4 stat">
-                  <svg
-                    class="icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke-width="1.6"
-                  >
-                    <circle cx="9" cy="8" r="3.2" />
-                    <path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" />
-                    <circle cx="17" cy="9" r="2.6" />
-                    <path d="M15 14.5c2.8.3 4.5 2.3 4.5 5.5" />
-                  </svg>
-                  <div class="num">
-                    <span class="counter" data-target="500">0</span>M+
+                  <div class="col-4 stat">
+                    <div class="num">
+                      <span class="counter" data-target="500">0</span>M+
+                    </div>
+                    <div class="lbl">Cộng đồng</div>
                   </div>
-                  <div class="lbl">Cộng đồng</div>
-                </div>
-                <div class="col-4 stat">
-                  <svg
-                    class="icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke-width="1.6"
-                  >
-                    <circle cx="9" cy="8" r="3.2" />
-                    <path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" />
-                    <circle cx="17" cy="9" r="2.6" />
-                    <path d="M15 14.5c2.8.3 4.5 2.3 4.5 5.5" />
-                  </svg>
-                  <div class="num">
-                    <span class="counter" data-target="100">0</span>+
+                  <div class="col-4 stat">
+                    <div class="num">
+                      <span class="counter" data-target="100">0</span>+
+                    </div>
+                    <div class="lbl">Bài báo</div>
                   </div>
-                  <div class="lbl">Bài báo</div>
                 </div>
               </div>
             </div>
@@ -270,11 +254,10 @@
             </div>
             <div class="col-md-6">
               <div class="legacy-text reveal">
-                <h2>Năm kiến tạo storytelling<br /><i>đa nền tảng</i></h2>
-                <div class="rule"></div>
+                <!-- <div class="rule"></div> -->
                 <p>
                   Hơn 20 năm đồng hành cùng doanh nghiệp, thương hiệu và các dự
-                  án văn hoá, Đôi Cánh chuyển hoá chiến lược thành nội dung, câu
+                  án văn hoá. Đôi Cánh chuyển hoá chiến lược thành nội dung, câu
                   chuyện và trải nghiệm tạo dấu ấn, thúc đẩy chuyển đổi và tăng
                   trưởng.
                 </p>
@@ -298,8 +281,8 @@
           <div class="row m-head g-4">
             <div class="col-md-12">
               <h2>
-                ĐỒNG HÀNH <br />
-                CÙNG DOANH NGHIỆP
+                Đồng hành <br />
+                cùng doanh nghiệp
               </h2>
             </div>
             <div class="col-md-12">
@@ -975,7 +958,7 @@
                 <div class="team-photo avatar-1">
                   <div class="team-info">
                     <h3 class="team-name">Nguyễn Yến Trinh</h3>
-                    <span class="team-role">Founder</span>
+                    <span class="team-role">Co-Founder & CEO</span>
                     <p class="team-bio">
                       Nhà báo, đạo diễn và nhà sản xuất nội dung với hơn 20 năm
                       kinh nghiệm trong truyền thông, văn hoá và tổ chức sự
@@ -990,11 +973,22 @@
                     <h3 class="team-name">
                       Nguyễn Tài Anh <br />(NS. Quang Thành)
                     </h3>
-                    <span class="team-role">Giám đốc Phát triển Quốc tế</span>
+                    <span class="team-role">Cố vấn Chiến lược</span>
                     <p class="team-bio">
                       20+ năm kinh nghiệm tổ chức, biên tập các sự kiện âm nhạc
                       nghệ thuật tại Việt Nam và nhiều nước trên thế giới.
                     </p>
+                  </div>
+                </div>
+              </div>
+              <div class="team-card" tabindex="0">
+                <div class="team-photo avatar-4">
+                  <div class="team-info">
+                    <h3 class="team-name">Phạm Minh Đức</h3>
+                    <span class="team-role"
+                      >Co-Founder & Giám đốc Kinh doanh</span
+                    >
+                    <p class="team-bio"></p>
                   </div>
                 </div>
               </div>
@@ -1032,12 +1026,85 @@
           <div
             class="sec-head d-flex flex-wrap justify-content-between align-items-end gap-3 mb-5 reveal"
           >
-            <h2>Đôi cánh trên báo chí</h2>
+            <h2>Đôi Cánh trên báo chí</h2>
             <a href="#" class="link-more">Xem tất cả bài viết</a>
           </div>
 
           <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
             <div class="col">
+              <a
+                href="https://magazine.dep.com.vn/ca-si-khanh-ly-nhac-si-trinh-cong-son-nhung-cuoc-hanh-ngo-cua-mot-tinh-tri-ky/"
+                target="_blank"
+                rel="noopener"
+                class="press-card reveal"
+              >
+                <div
+                  class="press-art"
+                  style="
+                    background-image: url(assets/img/news/dep-magazine.png);
+                  "
+                ></div>
+                <p class="press-cap">
+                  "Hát cùng nguồn cội - Chân dung Khánh Ly" - một dự án biểu
+                  diễn âm nhạc, phim, sách và chương trình cộng đồng được thực
+                  hiện trong nhiều năm.
+                </p>
+              </a>
+            </div>
+            <div class="embla__slide">
+              <a
+                href="https://amp.laodong.vn/sach-hay/hat-cung-nguon-coi-mot-chan-dung-that-khac-ve-ca-si-khanh-ly-1663097.ldo"
+                target="_blank"
+                rel="noopener"
+                class="press-card reveal"
+              >
+                <div
+                  class="press-art"
+                  style="background-image: url(assets/img/news/bao.jpg)"
+                ></div>
+                <p class="press-cap">
+                  Ca sĩ Khánh Ly, ca sĩ Trịnh Vĩnh Trinh, nhạc sĩ Trần Tiến cùng
+                  nhiều văn nghệ sĩ nổi tiếng hội ngộ.
+                </p>
+              </a>
+            </div>
+
+            <div class="embla__slide">
+              <a
+                href="https://www.doanhnhanthuonghieu.vn/2026/10/american-ceo-leadership-academy-ra-mat.html"
+                target="_blank"
+                rel="noopener"
+                class="press-card reveal"
+              >
+                <div
+                  class="press-art"
+                  style="background-image: url(assets/img/news/ceoleader.jpg)"
+                ></div>
+                <p class="press-cap">
+                  Đôi Cánh tại sự kiện ra mắt dự án American CEO Leadership
+                  Academy tại Hoa kỳ.
+                </p>
+              </a>
+            </div>
+            <div class="col">
+              <a
+                href="https://congly.vn/tu-kich-ban-phim-den-cuon-sach-ve-khanh-ly-mot-hanh-trinh-tro-ve-nguon-coi-513136.html"
+                target="_blank"
+                rel="noopener"
+                class="press-card reveal"
+              >
+                <div
+                  class="press-art"
+                  style="background-image: url(assets/img/news/Bao-cong-ly.png)"
+                ></div>
+                <p class="press-cap">
+                  Đôi Cánh và dự án tiêu biểu về phát triển các sản phẩm văn hóa
+                  nghệ thuật từ IP âm nhạc Việt Nam.
+                </p>
+              </a>
+            </div>
+
+            <!-- <div class="col">
               <a
                 class="press-card reveal"
                 target="_blank"
@@ -1055,21 +1122,23 @@
                   thoại âm nhạc
                 </p>
               </a>
-            </div>
-            <div class="embla__slide">
+            </div> -->
+
+            <div class="col">
               <a
-                href="https://www.doanhnhanthuonghieu.vn/2026/10/american-ceo-leadership-academy-ra-mat.html"
+                class="press-card reveal"
                 target="_blank"
                 rel="noopener"
-                class="press-card reveal"
+                href="https://tuoitre.vn/cloud-circus-nhat-ban-ky-ket-hop-tac-chien-luoc-cung-canh-cam-20241121170815098.htm"
               >
                 <div
                   class="press-art"
-                  style="background-image: url(assets/img/news/ceoleader.jpg)"
+                  style="
+                    background-image: url(assets/img/news/cloud-circus.jpg);
+                  "
                 ></div>
                 <p class="press-cap">
-                  American CEO Leadership Academy ra mắt dự án & học bổng tại
-                  Hoa kỳ
+                  Ký kết hợp tác chiến lược cùng Cloud CIRCUS Nhật Bản.
                 </p>
               </a>
             </div>
@@ -1087,84 +1156,11 @@
                   "
                 ></div>
                 <p class="press-cap">
-                  Đôi Cánh tham luận toạ đàm "Văn hoá trong kỷ nguyên số: Từ bản
-                  sắc đến sức mạnh mềm quốc gia"
+                  Đôi Cánh tham luận tại Toạ đàm "Văn hoá trong kỷ nguyên số: Từ
+                  bản sắc đến sức mạnh mềm quốc gia".
                 </p>
               </a>
             </div>
-
-            <div class="col">
-              <a
-                class="press-card reveal"
-                target="_blank"
-                rel="noopener"
-                href="https://tuoitre.vn/cloud-circus-nhat-ban-ky-ket-hop-tac-chien-luoc-cung-canh-cam-20241121170815098.htm"
-              >
-                <div
-                  class="press-art"
-                  style="
-                    background-image: url(assets/img/news/cloud-circus.jpg);
-                  "
-                ></div>
-                <p class="press-cap">
-                  Ký kết hợp tác chiến lược cùng Cloud CIRCUS Nhật Bản
-                </p>
-              </a>
-            </div>
-            <div class="col">
-              <a
-                href="https://magazine.dep.com.vn/ca-si-khanh-ly-nhac-si-trinh-cong-son-nhung-cuoc-hanh-ngo-cua-mot-tinh-tri-ky/"
-                target="_blank"
-                rel="noopener"
-                class="press-card reveal"
-              >
-                <div
-                  class="press-art"
-                  style="
-                    background-image: url(assets/img/news/dep-magazine.png);
-                  "
-                ></div>
-                <p class="press-cap">
-                  Ca sĩ Khánh Ly &amp; Nhạc sĩ Trịnh Công Sơn:<br />"Những cuộc
-                  hạnh ngộ của một tri kỷ"
-                </p>
-              </a>
-            </div>
-            <div class="col">
-              <a
-                href="https://congly.vn/tu-kich-ban-phim-den-cuon-sach-ve-khanh-ly-mot-hanh-trinh-tro-ve-nguon-coi-513136.html"
-                target="_blank"
-                rel="noopener"
-                class="press-card reveal"
-              >
-                <div
-                  class="press-art"
-                  style="background-image: url(assets/img/news/Bao-cong-ly.png)"
-                ></div>
-                <p class="press-cap">
-                  Từ kịch bản phim đến cuốn sách về
-                  <br />
-                  Khánh Ly: Một hành trình trở về nguồn cội
-                </p>
-              </a>
-            </div>
-
-            <!-- <div class="embla__slide">
-              <a
-                href="https://amp.laodong.vn/sach-hay/hat-cung-nguon-coi-mot-chan-dung-that-khac-ve-ca-si-khanh-ly-1663097.ldo"
-                target="_blank"
-                rel="noopener"
-                class="press-card reveal"
-              >
-                <div
-                  class="press-art"
-                  style="background-image: url(assets/img/news/baolaodong.png)"
-                ></div>
-                <p class="press-cap">
-                  Hát cùng nguồn cội - một chân dung thật khác về ca sĩ Khánh Ly
-                </p>
-              </a>
-            </div> -->
           </div>
         </div>
       </section>
@@ -1475,7 +1471,10 @@
           <div class="row foot-contacts row-cols-1 row-cols-md-3 g-3">
             <div class="col">Điện thoại: 0765 888 011</div>
             <div class="col">Email: info@wingsmedia.vn</div>
-            <div class="col">270F Võ Thị Sáu, P. Xuân Hoà, Tp.HCM</div>
+            <div class="col">
+              Trụ sở: 03 Quách Giai, P. Cát Lái, TP.HCM <br />
+              Văn phòng: 270F Võ Thị Sáu, P. Xuân Hoà, TP.HCM
+            </div>
           </div>
         </div>
         <div class="foot-bottom">
